@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=200, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!--<meta http-equiv="refresh" content="1"/>-->
+  <title>Live Population Update</title>
+  <style>
+    body {font-family: Lato;}
+    a { text-decoration: none; color: #777;}
+	.bottomright {
+  position: relative;
+  bottom: 50px;
+  right: 16px;
+  font-size: 18px;
+}
+  </style>
+
+
+  
+  <!-- Start Js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+  <script>
+
+function myFunction(){
+    let ctx = document.querySelector('#myChart').getContext('2d');
+
+    let myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ["CHILDREN MALE ", "CHILDREN FEMALE ", "TEEN MALE", "TEEN FEMALE", "YOUTH MALE" ,"YOUTH FEMALE", "ADULT MALE","ADULT FEMALE"],
+        datasets: [{
+          data: [<%= send_child_male_alive %>, <%= send_child_female_alive %>,<%= send_teen_male_alive %>, <%= send_teen_female_alive %>,<%= send_men_alive %>, <%= send_women_alive %>,<%= send_adult_male_alive %>, <%= send_adult_female_alive %>],
+          label: 'Population alive',
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+			'rgba(240, 99, 132, 0.6)',
+			'rgba(210, 99, 132, 0.6)',
+			'rgba(180, 99, 132, 0.6)',
+			'rgba(150, 99, 132, 0.6)',
+			'rgba(120, 99, 132, 0.6)',
+			'rgba(90, 99, 132, 0.6)'
+             ],
+          borderColor: [
+            'rgba(255,99,132,1)',
+            'rgba(54, 162, 235, 1)',
+			'rgba(240, 99, 132, 1)',
+    'rgba(210, 99, 132, 1)',
+    'rgba(180, 99, 132, 1)',
+    'rgba(150, 99, 132, 1)',
+    'rgba(120, 99, 132, 1)',
+    'rgba(90, 99, 132, 1)'
+        ],
+          borderWidth: 3
+        },
+		{
+		label : 'Population deceased',
+		data:[<%= send_child_male_deceased %>, <%= send_child_female_deceased %>,<%= send_teen_male_deceased %>, <%= send_teen_female_deceased %>,<%= send_men_deceased %>, <%= send_women_deceased %>,<%= send_adult_male_deceased %>, <%= send_adult_female_deceased %>],
+		
+          borderWidth: 3
+		  
+		}
+		]
+     },
+     options: {
+         scales: {
+		 //xAxes: [{
+           //     type: 'time',
+             //   time: {
+               //     displayFormats: {
+                 //       quarter: 'h:mm:ss a'
+                  //  }
+                //}
+            //}]
+             yAxes: [{
+                 ticks: {
+                     beginAtZero:true,
+					 fontColor: 'black',
+					 fontSize:20
+
+                 }
+             }]
+         },
+		 gridLines: {
+          color: 'rgba(171,171,171,1)',
+          lineWidth: 5
+        },
+         title: {
+            display: true,
+            text: "Live Population Update",
+            fontSize: 18
+        }
+     }
+    }); 
+	
+	//myChart.destroy();
+	var Population_alive = <%= send_total_population_alive %>;
+	var Population_deceased = <%= send_total_population_deceased %>;
+	var male_child_alive= <%= send_child_male_alive %>;
+    var female_child_alive= <%= send_child_female_alive %>;
+	var TEEN_MALE_alive =<%= send_teen_male_alive %>;
+	var TEEN_FEMALE_alive=<%= send_teen_female_alive %>
+	var men_alive =<%= send_men_alive %>
+	var women_alive = <%= send_women_alive %>
+	var adult_male_alive = <%= send_adult_male_alive %>
+	var adult_female_alive = <%= send_adult_female_alive %>
+	
+	
+	var male_child_deceased= <%= send_child_male_deceased %>;
+    var female_child_deceased= <%= send_child_female_deceased %>;
+	var TEEN_MALE_deceased =<%= send_teen_male_deceased %>;
+	var TEEN_FEMALE_deceased=<%= send_teen_female_deceased %>
+	var men_deceased =<%= send_men_deceased %>
+	var women_deceased = <%= send_women_deceased %>
+	var adult_male_deceased = <%= send_adult_male_deceased %>
+	var adult_female_deceased = <%= send_adult_female_deceased %>
+	
+	
+	     //var random = Math.round(Math.random() * (90 - 1) + 1),
+
+    var date = new Date();
+	var time = date.toLocaleTimeString();
+	
+	document.getElementById("Population_alive").innerHTML=Population_alive;
+	document.getElementById("Population_deceased").innerHTML=Population_deceased;
+	document.getElementById("male_child_alive").innerHTML=male_child_alive;
+	document.getElementById("female_child_alive").innerHTML=female_child_alive;
+	document.getElementById("TEEN_MALE_alive").innerHTML=TEEN_MALE_alive;
+	document.getElementById("TEEN_FEMALE_alive").innerHTML=TEEN_FEMALE_alive;
+	document.getElementById("men_alive").innerHTML=men_alive;
+	document.getElementById("women_alive").innerHTML=women_alive;
+	document.getElementById("adult_male_alive").innerHTML=adult_male_alive;
+	document.getElementById("adult_female_alive").innerHTML=adult_female_alive;
+	
+	document.getElementById("male_child_deceased").innerHTML=male_child_deceased;
+	document.getElementById("female_child_deceased").innerHTML=female_child_deceased;
+	document.getElementById("TEEN_MALE_deceased").innerHTML=TEEN_MALE_deceased;
+	document.getElementById("TEEN_FEMALE_deceased").innerHTML=TEEN_FEMALE_deceased;
+	document.getElementById("men_deceased").innerHTML=men_deceased;
+	document.getElementById("women_deceased").innerHTML=women_deceased;
+	document.getElementById("adult_male_deceased").innerHTML=adult_male_deceased;
+	document.getElementById("adult_female_deceased").innerHTML=adult_female_deceased;
+	
+   // document.getElementById("time").innerHTML=time;
+	//setTimeout(function(){
+	//window.location.reload(1);
+	//},1000);
+	//myChart.options.scales.xAxes[0].time.unit = 'second';
+    //myChart.update();
+	//var getdata =function()
+	//{
+	//$.ajax({
+	//myChart.data.datasets[0].data.push([<%= send_child_male_alive %>, <%= send_child_female_alive %>,<%= send_teen_male_alive %>, <%= send_teen_female_alive %>,<%= send_men_alive %>, <%= send_women_alive %>,<%= send_adult_male_alive %>, <%= send_adult_female_alive %>]);
+	 // myChart.update();
+	  //});
+	  //};
+	  //setInterval(getdata,1000);
+	 //myChart.config.data=[<%= send_child_male_alive %>, <%= send_child_female_alive %>,<%= send_teen_male_alive %>, <%= send_teen_female_alive %>,<%= send_men_alive %>, <%= send_women_alive %>,<%= send_adult_male_alive %>, <%= send_adult_female_alive %>];
+	 //myChart.update();
+	
+    function addData(){	
+	//console.log("Timer");
+	//console.log(<%= send_child_male_alive %>);
+	 //var x=[male_child_alive,female_child_alive,TEEN_MALE_alive,TEEN_FEMALE_alive,men_alive,women_alive,adult_male_alive,adult_female_alive];
+
+
+
+
+	 myChart.update();
+	}
+	//setTimeout(addData,1000);
+	
+	
+	setInterval(addData,1000);
+	
+}
+
+
+
+  </script>
+  
+  <body onload="myFunction()" background="http://alshurooqoil.com/wp-content/uploads/2014/03/light-grey.jpg">
+    <p style="color:rgba(54, 162, 235, 1);">
+
+	 <br><b><i> Total Population Alive: <span id="Population_alive"></span></b></i>
+	 	 <br><b><i> Total Population Deceased: <span id="Population_deceased"></span></b></i>
+
+	 <br><b><i>Population @ : <span id="time"></span></b></i>
+	</p>
+	
+  <canvas id="myChart"></canvas>
+  <p style="color:rgba(54, 162, 235, 1);" size="5" >
+      <br><b><i><u> ALIVE DATA </u>
+  	  <br><b><i>Children Male  ( <13 Years )   : <span id="male_child_alive"></span>
+      <br><b><i>Children Female( <13 Years )   : <span id="female_child_alive"></span>
+	  <br><b><i>Teen Male      ( 13-18 Years)  : <span id="TEEN_MALE_alive"></span>
+	  <br><b><i>Teen Female    ( 13-18 Years ) : <span id="TEEN_FEMALE_alive"></span>
+	  <br><b><i>Adult Male     ( 18-60 Years ) : <span id="men_alive"></span>
+	  <br><b><i>Adult Female   ( 18-60 Years ) : <span id="women_alive"></span>
+	  <br><b><i>Senior Male    ( >60 Years )   : <span id="adult_male_alive"></span>
+	  <br><b><i>Senior Female  ( >60 Years )   : <span id="adult_female_alive"></span>
+	</p>
+	  <!--<div style="position: absolute; top:80px;bottom: 4; right: 4; width: 100px; text-align:right;">-->
+<p style="color:rgba(54, 162, 235, 1);" size="5" >
+      <br><b><i><u> DECEASED DATA </u>
+  	  <br><b><i>Children Male   ( <13 Years )   : <span id="male_child_deceased"></span>
+      <br><b><i>Children Female ( <13 Years )   : <span id="female_child_deceased"></span>
+	  <br><b><i>Teen Male       ( 13-18 Years)  : <span id="TEEN_MALE_deceased"></span>
+	  <br><b><i>Teen Female     ( 13-18 Years ) : <span id="TEEN_FEMALE_deceased"></span>
+	  <br><b><i>Adult Male      ( 18-60 Years ) : <span id="men_deceased"></span>
+	  <br><b><i>Adult Female    ( 18-60 Years ) : <span id="women_deceased"></span>
+	  <br><b><i>Senior Male     ( >60 Years )   : <span id="adult_male_deceased"></span>
+	  <br><b><i>Senior Female   ( >60 Years )   : <span id="adult_female_deceased"></span>
+	</p>
+
+      
+<!--<input type="button" value="Add data" onclick="addData()">-->
+</body>
+</html>

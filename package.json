@@ -1,0 +1,30 @@
+{
+  "name": "demo",
+  "version": "1.0.0",
+  "description": "Node demo showing how to store data into a MongoDB database",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "mongodb",
+    "mongoose",
+    "demo"
+  ],
+  "author": "Jennifer Bland",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "consolidate": "^0.15.1",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "faker": "^4.1.0",
+    "jade": "^1.11.0",
+    "mongoose": "^4.13.17",
+    "mustache": "^3.0.1",
+    "node-datetime": "^2.1.2",
+    "socket.io": "^2.2.0",
+    "zingchart": "^2.8.4"
+  }
+}
